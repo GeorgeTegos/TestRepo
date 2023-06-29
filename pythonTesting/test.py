@@ -16,9 +16,9 @@ class people:
 
     def __init__(self, name, age, email, phone, password):
         self.name = name
-        self.age = age
+        self.age = int(age)
         self.email = emailCheck(email)
-        self.phone = phone
+        self.phone = int(phone)
         self.password = password
     
     def informations(self):
