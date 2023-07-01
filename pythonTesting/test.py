@@ -20,12 +20,22 @@ def phoneCheck(phone):
             if (re.fullmatch(regex,phone)):
                 return phone
 
+def ageCheck(age):
+    regex = r'\d{2,3}'
+    if(re.fullmatch(regex,age)):
+        return age
+    else:
+        while (re.fullmatch(regex,age) != True):
+            age = input("Invalid age, try again: ")
+            if (re.fullmatch(regex,age)):
+                return age
+
 class people:
 
 
     def __init__(self, name, age, email, phone, password):
         self.name = name
-        self.age = int(age)
+        self.age = ageCheck(age)
         self.email = emailCheck(email)
         self.phone = phoneCheck(phone)
         self.password = password
