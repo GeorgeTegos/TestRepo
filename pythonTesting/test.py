@@ -52,7 +52,10 @@ class people:
         peopleDB["email"] = userX.email
         peopleDB["phone"] = int(userX.phone)
         peopleDB["password"] = userX.password
-        whoIsIt()
+        if (input("New input ? Y/N") == "Y"):
+            whoIsIt()
+        else:
+            pass
 
 class user(people):
     
@@ -72,15 +75,9 @@ class employee(people):
         userX = employee(input('Name '),input('age '),input("email "), input("phone "), input("Password "), input("ID "))
         print(f"Name: ",userX.name,"\nAge: ", userX.age, "\nEmail: ", userX.email,"\nPhone: ", userX.phone,"\nPassword: ", userX.password, "\nYour ID: ", userX.employeeID)
 
-class DataBase(people):
-
-    def __init__(self, name, age, email, phone, password):
-        super().__init__(name, age, email, phone, password)
-    
-
 
 def whoIsIt():
-    whoIsIt = input("\nWho are you ? \n1) New \n2) Already User \n3) Employee\n")
+    whoIsIt = input("\nWho are you ? \n1) New \n2) Already User \n3) Employee\n4) Quit\n")
     whoIsIt = int(whoIsIt)
 
     if whoIsIt == 1:
@@ -91,6 +88,6 @@ def whoIsIt():
         employee.employeeInput()
     else:
         print("Wrong input")
+    
 
 whoIsIt()
-print(peopleDB)
