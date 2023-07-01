@@ -10,6 +10,15 @@ def emailCheck(email):
             if (re.fullmatch(regex,email)):
                 return email
 
+def phoneCheck(phone):
+    regex = r'\d{10}'
+    if(re.fullmatch(regex,phone)):
+        return phone
+    else:
+        while (re.fullmatch(regex,phone) != True):
+            phone = input("Invalid phone, try again: ")
+            if (re.fullmatch(regex,phone)):
+                return phone
 
 class people:
 
@@ -18,7 +27,7 @@ class people:
         self.name = name
         self.age = int(age)
         self.email = emailCheck(email)
-        self.phone = int(phone)
+        self.phone = phoneCheck(phone)
         self.password = password
     
     def informations(self):
@@ -34,9 +43,7 @@ class user(people):
 class employee(people):
     pass
 
-userInfo = user("george",29,"gtultim@asd.com",123123,11111111,19)
 
-employeeInfo = employee("nick",34,"ggg@sss.cas",1234234,222222)
 
 def userInput():
     userX = user(input('Name '),input('age '),input("email "), input("phone "), input("Password "), input("ID "))
