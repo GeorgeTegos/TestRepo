@@ -34,7 +34,7 @@ class people:
 
 
     def __init__(self, name, age, email, phone, password):
-        self.name = name
+        self.name = name.lower().capitalize()
         self.age = ageCheck(age)
         self.email = emailCheck(email)
         self.phone = phoneCheck(phone)
@@ -43,7 +43,9 @@ class people:
     def informations(self):
         print(self.name, self.age, self.email, self.phone, self.password)
 
-    
+    def peopleInfo():
+        userX = people(input('Name '),input('age '),input("email "), input("phone "), input("Password "))
+        print(f"Name: ",userX.name,"\nAge: ", userX.age, "\nEmail: ", userX.email,"\nPhone: ", userX.phone,"\nPassword: ", userX.password)
 
 class user(people):
     
@@ -51,34 +53,28 @@ class user(people):
         super().__init__(name, age, email, phone, password)
         self.userID = userID
         
+    def userInput():
+        userX = user(input('Name '),input('age '),input("email "), input("phone "), input("Password "), input("ID "))
+        print(f"\nName: ",userX.name,"\nAge: ", userX.age, "\nEmail: ", userX.email,"\nPhone: ", userX.phone,"\nPassword: ", userX.password,"\nYour ID: ", userX.userID)
 
 class employee(people):
     def __init__(self, name, age, email, phone, password, employeeID):
         super().__init__(name, age, email, phone, password)
         self.employeeID = employeeID
+    def employeeInput():
+        userX = employee(input('Name '),input('age '),input("email "), input("phone "), input("Password "), input("ID "))
+        print(f"Name: ",userX.name,"\nAge: ", userX.age, "\nEmail: ", userX.email,"\nPhone: ", userX.phone,"\nPassword: ", userX.password, "\nYour ID: ", userX.employeeID)
 
-
-def peopleInfo():
-    userX = people(input('Name '),input('age '),input("email "), input("phone "), input("Password "))
-    print(f"Name: ",userX.name,"\nAge: ", userX.age, "\nEmail: ", userX.email,"\nPhone: ", userX.phone,"\nPassword: ", userX.password)
-
-def userInput():
-    userX = user(input('Name '),input('age '),input("email "), input("phone "), input("Password "), input("ID "))
-    print(f"\nName: ",userX.name,"\nAge: ", userX.age, "\nEmail: ", userX.email,"\nPhone: ", userX.phone,"\nPassword: ", userX.password,"\nYour ID: ", userX.userID)
-
-def employeeInput():
-    userX = employee(input('Name '),input('age '),input("email "), input("phone "), input("Password "), input("ID "))
-    print(f"Name: ",userX.name,"\nAge: ", userX.age, "\nEmail: ", userX.email,"\nPhone: ", userX.phone,"\nPassword: ", userX.password, "\nYour ID: ", userX.employeeID)
 
 
 whoIsIt = input("Who are you ? \n1) New \n2) Already User \n3) Employee\n")
 whoIsIt = int(whoIsIt)
 if whoIsIt == 1:
-    peopleInfo()
+    people.peopleInfo()
 elif whoIsIt == 2:
-    userInput()
+    user.userInput()
 elif whoIsIt == 3:
-    employeeInput()
+    employee.employeeInput()
 else:
     print("Wrong input")
 
