@@ -1,4 +1,5 @@
 import re
+peopleDB= dict()
 
 def emailCheck(email):
     regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b'
@@ -46,6 +47,12 @@ class people:
     def peopleInfo():
         userX = people(input('Name '),input('age '),input("email "), input("phone "), input("Password "))
         print(f"Name: ",userX.name,"\nAge: ", userX.age, "\nEmail: ", userX.email,"\nPhone: ", userX.phone,"\nPassword: ", userX.password)
+        peopleDB["Name"] = userX.name
+        peopleDB["Age"] = int(userX.age)
+        peopleDB["email"] = userX.email
+        peopleDB["phone"] = int(userX.phone)
+        peopleDB["password"] = userX.password
+        whoIsIt()
 
 class user(people):
     
@@ -65,17 +72,25 @@ class employee(people):
         userX = employee(input('Name '),input('age '),input("email "), input("phone "), input("Password "), input("ID "))
         print(f"Name: ",userX.name,"\nAge: ", userX.age, "\nEmail: ", userX.email,"\nPhone: ", userX.phone,"\nPassword: ", userX.password, "\nYour ID: ", userX.employeeID)
 
+class DataBase(people):
+
+    def __init__(self, name, age, email, phone, password):
+        super().__init__(name, age, email, phone, password)
+    
 
 
-whoIsIt = input("Who are you ? \n1) New \n2) Already User \n3) Employee\n")
-whoIsIt = int(whoIsIt)
-if whoIsIt == 1:
-    people.peopleInfo()
-elif whoIsIt == 2:
-    user.userInput()
-elif whoIsIt == 3:
-    employee.employeeInput()
-else:
-    print("Wrong input")
+def whoIsIt():
+    whoIsIt = input("\nWho are you ? \n1) New \n2) Already User \n3) Employee\n")
+    whoIsIt = int(whoIsIt)
 
+    if whoIsIt == 1:
+        people.peopleInfo()
+    elif whoIsIt == 2:
+        user.userInput()
+    elif whoIsIt == 3:
+        employee.employeeInput()
+    else:
+        print("Wrong input")
 
+whoIsIt()
+print(peopleDB)
