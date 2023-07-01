@@ -43,25 +43,33 @@ class people:
     def informations(self):
         print(self.name, self.age, self.email, self.phone, self.password)
 
+    
+
 class user(people):
     
     def __init__(self, name, age, email, phone, password, userID):
         super().__init__(name, age, email, phone, password)
         self.userID = userID
-        pass
+        
 
 class employee(people):
-    pass
+    def __init__(self, name, age, email, phone, password, employeeID):
+        super().__init__(name, age, email, phone, password)
+        self.employeeID = employeeID
 
 
+def peopleInfo():
+    userX = people(input('Name '),input('age '),input("email "), input("phone "), input("Password "))
+    print(f"Name: ",userX.name,"\nAge: ", userX.age, "\nEmail: ", userX.email,"\nPhone: ", userX.phone,"\nPassword: ", userX.password)
 
 def userInput():
     userX = user(input('Name '),input('age '),input("email "), input("phone "), input("Password "), input("ID "))
     print(f"\nName: ",userX.name,"\nAge: ", userX.age, "\nEmail: ", userX.email,"\nPhone: ", userX.phone,"\nPassword: ", userX.password,"\nYour ID: ", userX.userID)
 
-def peopleInfo():
-    userX = people(input('Name '),input('age '),input("email "), input("phone "), input("Password "))
-    print(f"Name: ",userX.name,"\nAge: ", userX.age, "\nEmail: ", userX.email,"\nPhone: ", userX.phone,"\nPassword: ", userX.password)
+def employeeInput():
+    userX = employee(input('Name '),input('age '),input("email "), input("phone "), input("Password "), input("ID "))
+    print(f"Name: ",userX.name,"\nAge: ", userX.age, "\nEmail: ", userX.email,"\nPhone: ", userX.phone,"\nPassword: ", userX.password, "\nYour ID: ", userX.employeeID)
+
 
 whoIsIt = input("Who are you ? \n1) New \n2) Already User \n3) Employee\n")
 whoIsIt = int(whoIsIt)
@@ -70,9 +78,8 @@ if whoIsIt == 1:
 elif whoIsIt == 2:
     userInput()
 elif whoIsIt == 3:
-    pass
+    employeeInput()
 else:
     print("Wrong input")
-
 
 
