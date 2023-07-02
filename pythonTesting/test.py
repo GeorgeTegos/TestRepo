@@ -1,6 +1,7 @@
 import re
 peopleDB= dict()
 
+
 def emailCheck(email):
     regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b'
     if(re.fullmatch(regex,email)):
@@ -52,8 +53,10 @@ class people:
         peopleDB["email"] = userX.email
         peopleDB["phone"] = int(userX.phone)
         peopleDB["password"] = userX.password
-        if (input("New input ? Y/N") == "Y"):
+        if (input("New input ? Y/N\n") == "Y"):
             whoIsIt()
+        elif (input("Check people Database? Y/N\n") == "Y"):
+            checkPeopleDB()
         else:
             pass
 
@@ -75,6 +78,9 @@ class employee(people):
         userX = employee(input('Name '),input('age '),input("email "), input("phone "), input("Password "), input("ID "))
         print(f"Name: ",userX.name,"\nAge: ", userX.age, "\nEmail: ", userX.email,"\nPhone: ", userX.phone,"\nPassword: ", userX.password, "\nYour ID: ", userX.employeeID)
 
+def peopleDatabase(number):
+    peopleDB[number].update()
+    return peopleDB
 
 def whoIsIt():
     whoIsIt = input("\nWho are you ? \n1) New \n2) Already User \n3) Employee\n4) Quit\n")
@@ -89,5 +95,10 @@ def whoIsIt():
     else:
         print("Wrong input")
     
+def checkPeopleDB():
+    print("------------")
+    for key in peopleDB:
+        print(key," = ",peopleDB[key])
+    print("----------")
 
 whoIsIt()
