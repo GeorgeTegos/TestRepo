@@ -1,5 +1,7 @@
 import re
 peopleDB= []
+userDB = []
+employeeDB = []
 
 
 
@@ -50,15 +52,11 @@ class people:
         userX = people(input('Name '),input('age '),input("email "), input("phone "), input("Password "))
         print(f"Name: ",userX.name,"\nAge: ", userX.age, "\nEmail: ", userX.email,"\nPhone: ", userX.phone,"\nPassword: ", userX.password)
 
-        NEWpeopleDB = [userX.name,int(userX.age),userX.email,int(userX.phone),userX.password]
-        peopleDB.append(NEWpeopleDB)
+        newPeopleInput = [userX.name,int(userX.age),userX.email,int(userX.phone),userX.password]
+        peopleDB.append(newPeopleInput)
 
-
-        if (input("New input ? Y/N\n") == "Y"):
+        if (input("New input ? Y/N\n") == "Y" or "y"):
             whoIsIt()
-        elif (input("Check people Database? Y/N\n") == "Y"):
-            #checkPeopleDB()
-            print(peopleDB)
         else:
             pass
 
@@ -71,6 +69,15 @@ class user(people):
     def userInput():
         userX = user(input('Name '),input('age '),input("email "), input("phone "), input("Password "), input("ID "))
         print(f"\nName: ",userX.name,"\nAge: ", userX.age, "\nEmail: ", userX.email,"\nPhone: ", userX.phone,"\nPassword: ", userX.password,"\nYour ID: ", userX.userID)
+        
+        newUserInput = [userX.name,int(userX.age),userX.email,int(userX.phone),userX.password]
+        userDB.append(newUserInput)
+        
+        if (input("New input ? Y/N\n") == "Y" or "y"):
+            whoIsIt()
+        else:
+            pass
+
 
 class employee(people):
     def __init__(self, name, age, email, phone, password, employeeID):
@@ -80,12 +87,19 @@ class employee(people):
         userX = employee(input('Name '),input('age '),input("email "), input("phone "), input("Password "), input("ID "))
         print(f"Name: ",userX.name,"\nAge: ", userX.age, "\nEmail: ", userX.email,"\nPhone: ", userX.phone,"\nPassword: ", userX.password, "\nYour ID: ", userX.employeeID)
 
-def peopleDatabase(number):
-    peopleDB[number].update()
-    return peopleDB
+        newEmployeeInput = [userX.name,int(userX.age),userX.email,int(userX.phone),userX.password]
+        employeeDB.append(newEmployeeInput)
+
+        if (input("New input ? Y/N\n") == "Y" or "y"):
+            whoIsIt()
+        else:
+            pass
+
+def peopleDatabase():
+    pass
 
 def whoIsIt():
-    whoIsIt = input("\nWho are you ? \n1) New \n2) Already User \n3) Employee\n4) Quit\n")
+    whoIsIt = input("\nWho are you ? \n1) New \n2) Already User \n3) Employee\n4) Check Database\n5) Make new inputs \n6) Exit\n")
     whoIsIt = int(whoIsIt)
 
     if whoIsIt == 1:
@@ -94,14 +108,23 @@ def whoIsIt():
         user.userInput()
     elif whoIsIt == 3:
         employee.employeeInput()
+    elif whoIsIt == 4:
+        option = input("\n1) Visitors Database \n2) Users Database \n3) Employees Database\nPres anything else to exit\n")
+        option = int(option)
+        if option == 1:
+            print(peopleDB)
+        elif option == 2:
+            print(userDB)
+        elif option == 3:
+            print(employeeDB)
+        else:
+            pass
+    elif whoIsIt == 5:
+        whoIsIt()
+    elif whoIsIt == 6:
+        pass
     else:
         print("Wrong input")
     
-def checkPeopleDB():
-    print("------------")
-    #for key in peopleDB:
-    #    print(key," = ",peopleDB[key])
-    print(peopleDB)
-    print("----------")
 
 whoIsIt()
