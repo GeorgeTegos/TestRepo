@@ -1,5 +1,6 @@
 import re
-peopleDB= dict()
+peopleDB= []
+
 
 
 def emailCheck(email):
@@ -48,15 +49,16 @@ class people:
     def peopleInfo():
         userX = people(input('Name '),input('age '),input("email "), input("phone "), input("Password "))
         print(f"Name: ",userX.name,"\nAge: ", userX.age, "\nEmail: ", userX.email,"\nPhone: ", userX.phone,"\nPassword: ", userX.password)
-        peopleDB["Name"] = userX.name
-        peopleDB["Age"] = int(userX.age)
-        peopleDB["email"] = userX.email
-        peopleDB["phone"] = int(userX.phone)
-        peopleDB["password"] = userX.password
+
+        NEWpeopleDB = [userX.name,int(userX.age),userX.email,int(userX.phone),userX.password]
+        peopleDB.append(NEWpeopleDB)
+
+
         if (input("New input ? Y/N\n") == "Y"):
             whoIsIt()
         elif (input("Check people Database? Y/N\n") == "Y"):
-            checkPeopleDB()
+            #checkPeopleDB()
+            print(peopleDB)
         else:
             pass
 
@@ -97,8 +99,9 @@ def whoIsIt():
     
 def checkPeopleDB():
     print("------------")
-    for key in peopleDB:
-        print(key," = ",peopleDB[key])
+    #for key in peopleDB:
+    #    print(key," = ",peopleDB[key])
+    print(peopleDB)
     print("----------")
 
 whoIsIt()
