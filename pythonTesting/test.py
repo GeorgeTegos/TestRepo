@@ -3,7 +3,11 @@ peopleDB= []
 userDB = []
 employeeDB = []
 
-
+def newInput():
+    if (input("~~~~~~~~\nNew input ? Y/N\n~~~~~~~~\n") == "Y" or "y"):
+        whoIsIt()
+    else:
+        return 
 
 def emailCheck(email):
     regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b'
@@ -55,10 +59,7 @@ class people:
         newPeopleInput = [userX.name,int(userX.age),userX.email,int(userX.phone),userX.password]
         peopleDB.append(newPeopleInput)
 
-        if (input("New input ? Y/N\n") == "Y" or "y"):
-            whoIsIt()
-        else:
-            pass
+        newInput()
 
 class user(people):
     
@@ -73,10 +74,7 @@ class user(people):
         newUserInput = [userX.name,int(userX.age),userX.email,int(userX.phone),userX.password]
         userDB.append(newUserInput)
         
-        if (input("New input ? Y/N\n") == "Y" or "y"):
-            whoIsIt()
-        else:
-            pass
+        newInput()
 
 
 class employee(people):
@@ -90,13 +88,7 @@ class employee(people):
         newEmployeeInput = [userX.name,int(userX.age),userX.email,int(userX.phone),userX.password]
         employeeDB.append(newEmployeeInput)
 
-        if (input("New input ? Y/N\n") == "Y" or "y"):
-            whoIsIt()
-        else:
-            pass
-
-def peopleDatabase():
-    pass
+        newInput()
 
 def whoIsIt():
     whoIsIt = input("\nWho are you ? \n1) New \n2) Already User \n3) Employee\n4) Check Database\n5) Make new inputs \n6) Exit\n")
@@ -109,16 +101,18 @@ def whoIsIt():
     elif whoIsIt == 3:
         employee.employeeInput()
     elif whoIsIt == 4:
-        option = input("\n1) Visitors Database \n2) Users Database \n3) Employees Database\nPres anything else to exit\n")
-        option = int(option)
-        if option == 1:
+        option = input("\n1) Visitors Database \n2) Users Database \n3) Employees Database\nPress anything else to exit\n")
+        if option == "1":
             print(peopleDB)
-        elif option == 2:
+            newInput()
+        elif option == "2":
             print(userDB)
-        elif option == 3:
+            newInput()
+        elif option == "3":
             print(employeeDB)
+            newInput()
         else:
-            pass
+            return None
     elif whoIsIt == 5:
         whoIsIt()
     elif whoIsIt == 6:
