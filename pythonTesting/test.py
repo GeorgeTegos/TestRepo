@@ -4,10 +4,12 @@ userDB = []
 employeeDB = []
 
 def newInput():
-    if (input("~~~~~~~~\nNew input ? Y/N\n~~~~~~~~\n") == "Y" or "y"):
+    option = input("~~~~~~~~\nNew input ? Y/N\n~~~~~~~~\n")
+    option = option.lower()
+    if (option == "y"):
         whoIsIt()
     else:
-        return 
+        MainMenu()
 
 def emailCheck(email):
     regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b'
@@ -76,7 +78,6 @@ class user(people):
         
         newInput()
 
-
 class employee(people):
     def __init__(self, name, age, email, phone, password, employeeID):
         super().__init__(name, age, email, phone, password)
@@ -91,7 +92,7 @@ class employee(people):
         newInput()
 
 def whoIsIt():
-    whoIsIt = input("\nWho are you ? \n1) New \n2) Already User \n3) Employee\n4) Check Database\n5) Make new inputs \n6) Exit\n")
+    whoIsIt = input("\nWho are you ? \n1) New \n2) Already User \n3) Employee\n4) Make new inputs \n5) Exit\n")
     whoIsIt = int(whoIsIt)
 
     if whoIsIt == 1:
@@ -101,24 +102,39 @@ def whoIsIt():
     elif whoIsIt == 3:
         employee.employeeInput()
     elif whoIsIt == 4:
-        option = input("\n1) Visitors Database \n2) Users Database \n3) Employees Database\nPress anything else to exit\n")
-        if option == "1":
-            print(peopleDB)
-            newInput()
-        elif option == "2":
-            print(userDB)
-            newInput()
-        elif option == "3":
-            print(employeeDB)
-            newInput()
-        else:
-            return None
-    elif whoIsIt == 5:
         whoIsIt()
-    elif whoIsIt == 6:
+    elif whoIsIt == 5:
         pass
     else:
         print("Wrong input")
-    
 
-whoIsIt()
+def checkDataBase():
+    option = input("\n1) Visitors Database \n2) Users Database \n3) Employees Database\nPress anything else to exit\n")
+    if option == "1":
+        print(peopleDB)
+        newInput()
+    elif option == "2":
+        print(userDB)
+        newInput()
+    elif option == "3":
+        print(employeeDB)
+        newInput()
+    else:
+        return None
+
+def MainMenu():
+    option = input("\nWelcome to my personal DB\nChoose one of the below\n1) Login\n2) New Inputs\n3) Check Database\n4) Exit\n")
+    option = int(option)
+
+    if(option == 1):
+        pass
+    elif (option == 2):
+        whoIsIt()
+    elif (option == 3):
+        checkDataBase()
+    elif (option == 4):
+        exit()
+    else:
+        print("\nWrong Input\n")
+
+MainMenu()
