@@ -58,8 +58,20 @@ class people:
         userX = people(input('Name '),input('age '),input("email "), input("phone "), input("Password "))
         print(f"Name: ",userX.name,"\nAge: ", userX.age, "\nEmail: ", userX.email,"\nPhone: ", userX.phone,"\nPassword: ", userX.password)
 
-        newPeopleInput = [userX.name,int(userX.age),userX.email,int(userX.phone),userX.password]
-        peopleDB.append(newPeopleInput)
+        what_is_it = int(input("\nFor new user Press 1\nFor new employee press 2\nFor new Admind press 9\n"))
+
+        newUserInput = [userX.name,int(userX.age),userX.email,int(userX.phone),userX.password]
+        
+        if what_is_it == 1:
+            give_user_id = int(input("Give user ID"))
+            newUserInput.append(give_user_id)
+            userDB.append(newUserInput)
+        elif what_is_it == 2:
+            give_user_id = int(input("Give user ID"))
+            newUserInput.append(give_user_id)
+            employeeDB.append(newUserInput)
+        else:
+            print("wrong input")
 
         newInput()
 
@@ -109,16 +121,16 @@ def whoIsIt():
         print("Wrong input")
 
 def checkDataBase():
-    option = input("\n1) Visitors Database \n2) Users Database \n3) Employees Database\nPress anything else to exit\n")
+    option = input("\n1) Users Database \n2) Employees Database\n3) Admins Database\nPress anything else to exit\n")
     if option == "1":
-        print(peopleDB)
-        newInput()
-    elif option == "2":
         print(userDB)
-        newInput()
-    elif option == "3":
+        newInput()        
+    elif option == "2":
         print(employeeDB)
         newInput()
+    elif option == "3":
+        print("Admins are not ready yet")
+        MainMenu()
     else:
         return None
 
@@ -138,7 +150,6 @@ def MainMenu():
         print("\nWrong Input\n")
 
 MainMenu()
-
 # 1) ask for peopleDB to user or employee
 # 2) safe inputs to CSV
 # 3) read CSV inputs and update them
