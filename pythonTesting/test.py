@@ -1,4 +1,6 @@
 import re
+import csv
+    
 peopleDB= []
 userDB = []
 employeeDB = []
@@ -135,7 +137,7 @@ def checkDataBase():
         return None
 
 def MainMenu():
-    option = input("\nWelcome to my personal DB\nChoose one of the below\n1) Login (not working)\n2) New Inputs\n3) Check Database\n4) Exit\n")
+    option = input("\nWelcome to my personal DB\nChoose one of the below\n1) Login (not working)\n2) New Inputs\n3) Check Database\n9) Data to CSV\n4) Exit\n")
     option = int(option)
 
     if(option == 1):
@@ -146,11 +148,20 @@ def MainMenu():
         checkDataBase()
     elif (option == 4):
         exit()
+    elif (option == 9):
+        dataIntoCSV(userDB)
     else:
         print("\nWrong Input\n")
 
+def dataIntoCSV(database):
+    with open('mycsvfile.csv',"w+",newline="") as f:
+        write = csv.writer(f)
+        write.writerows(database)
+
+
+
 MainMenu()
-# 1) ask for peopleDB to user or employee
+# 1) ask for peopleDB to user or employee ++
 # 2) safe inputs to CSV
 # 3) read CSV inputs and update them
 # 4) -- Safe them in local DB --
