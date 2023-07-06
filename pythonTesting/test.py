@@ -1,7 +1,5 @@
 import re
-import csv
     
-peopleDB= []
 userDB = []
 employeeDB = []
 
@@ -185,16 +183,7 @@ def MainMenu():
         print("Try again !")
     
 def dataIntoCSV(database):
-
-    # for key in database:
-    #     local_key_save = key.keys()
-    #     data_to_save.append(local_key_save)
-
-    data_to_save = ["Name","Age","E-mail","Phone","Password","ID"]
-    with open('mycsvfile.csv',"w") as csvfile:
-        writer = csv.DictWriter(csvfile,data_to_save)
-        writer.writeheader()
-        writer.writerows(database)
+    pass
     
     
 MainMenu()
