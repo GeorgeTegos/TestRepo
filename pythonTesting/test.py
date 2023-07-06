@@ -168,7 +168,6 @@ def MainMenu():
     #Force INT option input !!!!
     
     if option in test_list:
-        print("Inside")
         if (int(option) == 1):
             pass
         elif (int(option) == 2):
