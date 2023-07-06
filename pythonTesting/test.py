@@ -5,6 +5,7 @@ peopleDB= []
 userDB = []
 employeeDB = []
 
+
 def newInput():
     option = input("~~~~~~~~\nNew input ? Y/N\n~~~~~~~~\n")
     option = option.lower()
@@ -62,18 +63,27 @@ class people:
 
         what_is_it = int(input("\nFor new user Press 1\nFor new employee press 2\nFor new Admind press 9\n"))
 
-        newUserInput = [userX.name,int(userX.age),userX.email,int(userX.phone),userX.password]
+        newUserInput = {
+            "Name": userX.name,
+            "Age": int(userX.age),
+            "E-mail": userX.email,
+            "Phone": userX.phone,
+            "Password": userX.password,
+        }
         
         if what_is_it == 1:
             give_user_id = int(input("Give user ID"))
-            newUserInput.append(give_user_id)
+            newUserInput['ID'] = give_user_id
             userDB.append(newUserInput)
         elif what_is_it == 2:
             give_user_id = int(input("Give user ID"))
-            newUserInput.append(give_user_id)
+            newUserInput['ID'] = give_user_id
             employeeDB.append(newUserInput)
         else:
             print("wrong input")
+        
+
+
 
         newInput()
 
@@ -87,7 +97,15 @@ class user(people):
         userX = user(input('Name '),input('age '),input("email "), input("phone "), input("Password "), input("ID "))
         print(f"\nName: ",userX.name,"\nAge: ", userX.age, "\nEmail: ", userX.email,"\nPhone: ", userX.phone,"\nPassword: ", userX.password,"\nYour ID: ", userX.userID)
         
-        newUserInput = [userX.name,int(userX.age),userX.email,int(userX.phone),userX.password]
+        # newUserInput = [userX.name,int(userX.age),userX.email,int(userX.phone),userX.password]
+        newUserInput = {
+            "Name": userX.name,
+            "Age": int(userX.age),
+            "E-mail": userX.email,
+            "Phone": userX.phone,
+            "Password": userX.password,
+            "ID": userX.userID
+        }
         userDB.append(newUserInput)
         
         newInput()
@@ -100,7 +118,15 @@ class employee(people):
         userX = employee(input('Name '),input('age '),input("email "), input("phone "), input("Password "), input("ID "))
         print(f"Name: ",userX.name,"\nAge: ", userX.age, "\nEmail: ", userX.email,"\nPhone: ", userX.phone,"\nPassword: ", userX.password, "\nYour ID: ", userX.employeeID)
 
-        newEmployeeInput = [userX.name,int(userX.age),userX.email,int(userX.phone),userX.password]
+        newEmployeeInput = {
+            "Name": userX.name,
+            "Age": int(userX.age),
+            "E-mail": userX.email,
+            "Phone": userX.phone,
+            "Password": userX.password,
+            "ID": userX.employeeID
+        }
+
         employeeDB.append(newEmployeeInput)
 
         newInput()
@@ -137,29 +163,41 @@ def checkDataBase():
         return None
 
 def MainMenu():
+    test_list = ["0","1","2","3","4","5","6","7","8","9"]
     option = input("\nWelcome to my personal DB\nChoose one of the below\n1) Login (not working)\n2) New Inputs\n3) Check Database\n9) Data to CSV\n4) Exit\n")
-    option = int(option)
-
-    if(option == 1):
-        pass
-    elif (option == 2):
-        whoIsIt()
-    elif (option == 3):
-        checkDataBase()
-    elif (option == 4):
-        exit()
-    elif (option == 9):
-        dataIntoCSV(userDB)
+    #Force INT option input !!!!
+    
+    if option in test_list:
+        print("Inside")
+        if (int(option) == 1):
+            pass
+        elif (int(option) == 2):
+            whoIsIt()
+        elif (int(option) == 3):
+            checkDataBase()
+        elif (int(option) == 4):
+            exit()
+        elif (int(option) == 9):
+            dataIntoCSV(userDB)
+        else:
+            print("wrong input, try again")
+            exit()
     else:
-        print("\nWrong Input\n")
-
+        print("Try again !")
+    
 def dataIntoCSV(database):
-    with open('mycsvfile.csv',"w+",newline="") as f:
-        write = csv.writer(f)
-        write.writerows(database)
 
+    # for key in database:
+    #     local_key_save = key.keys()
+    #     data_to_save.append(local_key_save)
 
-
+    data_to_save = ["Name","Age","E-mail","Phone","Password","ID"]
+    with open('mycsvfile.csv',"w") as csvfile:
+        writer = csv.DictWriter(csvfile,data_to_save)
+        writer.writeheader()
+        writer.writerows(database)
+    
+    
 MainMenu()
 # 1) ask for peopleDB to user or employee ++
 # 2) safe inputs to CSV
